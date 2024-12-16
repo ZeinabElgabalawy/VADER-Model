@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #e8f5e9, #e3f2fd);
+            color: #222;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #1b5e20;
+        }
+
+        .result {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .progress-bar {
+            background: #f1f8e9;
+            border-radius: 10px;
+            height: 25px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .progress.positive {
+            background: #66bb6a; /* Green */
+        }
+
+        .progress.neutral {
+            background: #ffeb3b; /* Yellow */
+        }
+
+        .progress.negative {
+            background: #ef5350; /* Red */
+        }
+
+        .label {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .emoji {
+            font-size: 1.6rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis Results</h1>
+        <div class="result">
+            <h2>Positive: <span class="emoji">😊</span></h2>
+            <div class="progress-bar">
+                <div class="progress positive" id="positive-bar"></div>
+                <div class="label" id="positive-label">0%</div>
+            </div>
+        </div>
+        <div class="result">
+            <h2>Neutral: <span class="emoji">😐</span></h2>
+            <div class="progress-bar">
+                <div class="progress neutral" id="neutral-bar"></div>
+                <div class="label" id="neutral-label">0%</div>
+            </div>
+        </div>
+        <div class="result">
+            <h2>Negative: <span class="emoji">😢</span></h2>
+            <div class="progress-bar">
+                <div class="progress negative" id="negative-bar"></div>
+                <div class="label" id="negative-label">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Replace these values with the actual percentages from your backend
+        const positivePercentage = 60; // Replace with positive_percentage from Flask
+        const neutralPercentage = 25; // Replace with neutral_percentage from Flask
+        const negativePercentage = 15; // Replace with negative_percentage from Flask
+
+        // Set the widths and labels dynamically
+        document.getElementById('positive-bar').style.width = positivePercentage + '%';
+        document.getElementById('neutral-bar').style.width = neutralPercentage + '%';
+        document.getElementById('negative-bar').style.width = negativePercentage + '%';
+
+        document.getElementById('positive-label').textContent = positivePercentage + '%';
+        document.getElementById('neutral-label').textContent = neutralPercentage + '%';
+        document.getElementById('negative-label').textContent = negativePercentage + '%';
+    </script>
+</body>
+</html>
